@@ -30,7 +30,7 @@
 		version : '0.1',
 		modules : {},
 		device : {},
-		path : jsmPath || '',
+		path : win.jsmPath || '',
 		nocache : document.location.href.match(/(\?|\&)nocache/) ? (new Date).getTime() : '',
 
 		_current : null,
@@ -578,4 +578,4 @@
 	// boot it up!
 	jsm._boot();
 
-})(window)
+})(window);
