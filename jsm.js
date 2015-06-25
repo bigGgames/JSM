@@ -135,12 +135,6 @@
 			return values
 		},
 
-		addObjectToIgnore : function(object)
-		{
-			if ( this._ignoredObjects.indexOf(object) === -1 )
-				this._ignoredObjects.push(object);
-		},
-
 		setVendorAttribute : function(el, attr, val)
 		{
 			var uc = attr.charAt(0).toUpperCase() + attr.substr(1);
