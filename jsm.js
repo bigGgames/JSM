@@ -389,7 +389,7 @@
 			{
 				value : function()
 				{
-					return this[Math.rand(0, this.length - 1)]
+					return this.length > 1 ? this[Math.rand(0, this.length - 1)] : this[0]
 				}
 			})
 
