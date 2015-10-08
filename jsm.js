@@ -47,7 +47,7 @@
 				this._ignoredObjects.push(object);
 		},
 
-		_checkIgnoredObjects : function(object)
+		_checkIgnoredObjects : function()
 		{
 			for ( var i = 0; i < this._ignoredObjects.length; i++ )
 				if ( object instanceof this._ignoredObjects[i++] )
@@ -97,7 +97,7 @@
 					typeof ext !== 'object' ||
 					ext instanceof HTMLElement ||
 					ext instanceof jsm.Class ||
-					this._checkIgnoredObjects(ext) ||
+					this._checkIgnoredObjects(object) ||
 					ext === null
 				)
 					object1[key] = ext;
@@ -107,7 +107,7 @@
 					if ( !object1[key] || typeof object1[key] !== 'object' )
 						object1[key] = ext instanceof Array ? [] : {};
 
-					jsm.merge(object1[key], ext);
+					jsm.merge(object1, key);
 				}
 			}
 
@@ -344,7 +344,13 @@
 			{
 				var dx = x2 - x1, dy = y2 - y1;
 				return !!sqrt ? Math.sqrt(dx * dx + dy * dy) : dx * dx + dy * dy
-			}
+			};
+
+			Math.angle = function(x1, y1, x2, y2, deg)
+			{
+				var dx = x2 - x1, dy = y2 - y1, angle = Math.atan2(dy, dx);
+				return !!deg ? angle.toDeg() : angle;
+			};
 
 			Number.prototype.lerp = function(target, time) { return Math.lerp(this, target, time) }
 
@@ -389,7 +395,7 @@
 			{
 				value : function()
 				{
-					return this.length > 1 ? this[Math.rand(0, this.length - 1)] : this[0]
+					return this[Math.rand(0, this.length - 1)]
 				}
 			})
 
